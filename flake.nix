@@ -1,7 +1,7 @@
 {
     description = "My Neovim Flake";
 
-    inputs.nixpkgs.url = "github:NixOS/nixpkgs/d43e7c2417948b88a46e54817ae6b5055ceb1fbc";
+    inputs.nixpkgs.url = "github:NixOS/nixpkgs/16bc4259a8c3d236e85c6e6e05d5417355c610df";
 
     outputs = { ... }: {
 		homeModules.default = { config, lib, pkgs, ... }: {
