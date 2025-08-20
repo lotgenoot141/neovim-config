@@ -80,18 +80,18 @@
 
 				home.packages =
 					with lib;
-					with config.neovim.languages;
+					with config.neovim;
 					with pkgs;
 				lib.flatten [
 					pkgs.ripgrep
-					(optional c.enable clang-tools)
-					(optional lua.enable lua-language-server)
-					(optional markdown.enable vscode-langservers-extracted)
-					(optional nix.enable nixd)
-					(optional python.enable pyright)
-					(optional rust.enable rust-analyzer)
-					(optional toml.enable taplo)
-					(optional zig.enable zls)
+					(optional languages.c.enable clang-tools)
+					(optional languages.lua.enable lua-language-server)
+					(optional languages.markdown.enable vscode-langservers-extracted)
+					(optional languages.nix.enable nixd)
+					(optional languages.python.enable pyright)
+					(optional languages.rust.enable rust-analyzer)
+					(optional languages.toml.enable taplo)
+					(optional languages.zig.enable zls)
 				];
 			};
 		};
