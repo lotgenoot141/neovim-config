@@ -54,24 +54,27 @@
 							cmp-nvim-lsp
 							nvim-cmp
 						];
+						parsers = [];
+						/*
 						parsers =
 							with lib;
 							with pkgs.vimPlugins.nvim-treesitter-parsers;
 							with config.neovim.languages;
 						lib.flatten [
-							(lib.optional c.enable [ c cpp ])
-							(lib.optional lua.enable [ lua ])
-							(lib.optional markdown.enable [ markdown markdown_inline ])
-							(lib.optional nix.enable [ nix ])
-							(lib.optional python.enable [ python ])
-							(lib.optional rust.enable [ rust ])
-							(lib.optional toml.enable [ toml ])
-							(lib.optional zig.enable [ zig ])
+							(optional c.enable [ c cpp ])
+							(optional lua.enable [ lua ])
+							(optional markdown.enable [ markdown markdown_inline ])
+							(optional nix.enable [ nix ])
+							(optional python.enable [ python ])
+							(optional rust.enable [ rust ])
+							(optional toml.enable [ toml ])
+							(optional zig.enable [ zig ])
 							# NOTE: other parsers:
 							# yaml, xml, wgsl, vimdoc, vim, tmux, sway, sql, ron, regex,
 							# latex, json, javascript, javadoc, java, html, go, css, c, asm,
 							# typst
 						];
+						*/
 					in plugins ++ parsers;
 				};
 
