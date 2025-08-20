@@ -1,9 +1,7 @@
 {
     description = "My Neovim Flake";
 
-    inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs";
-    };
+    inputs.nixpkgs.url = "github:NixOS/nixpkgs";
 
     outputs = { self, nixpkgs, flake-utils, ... }: {
 		homeModules.default = { config, lib, pkgs, ... }: {
@@ -35,7 +33,9 @@
 
 					plugins = let
 						plugins = with pkgs.vimPlugins; [
+							# nvim-tree-lua
 							catppuccin-nvim
+							cmp-nvim-lsp
 							cmp-nvim-lsp
 							crates-nvim
 							gitsigns-nvim
@@ -43,16 +43,15 @@
 							lualine-nvim
 							nvim-autopairs
 							nvim-cmp
+							nvim-cmp
 							nvim-lspconfig
-							# nvim-tree-lua
-							oil-nvim
 							nvim-treesitter
 							nvim-treesitter-context
 							nvim-ufo
 							nvim-web-devicons
+							oil-nvim
+							plenary-nvim
 							telescope-nvim
-							cmp-nvim-lsp
-							nvim-cmp
 						];
 						parsers =
 							with config.neovim;

@@ -87,7 +87,8 @@ do -- completions
 end
 
 -- temp fix (https://github.com/nvim-telescope/telescope.nvim/issues/3436)
-require("telescope").setup({ defaults = { border = false } })
+-- require("telescope").setup({ defaults = { border = false } })
+require("telescope").setup()
 require("nvim-autopairs").setup()
 require("ufo").setup()
 require("gitsigns").setup()
