@@ -58,11 +58,9 @@
 							with config.neovim;
 							with pkgs.vimPlugins.nvim-treesitter-parsers;
 						lib.flatten [
-							(lib.optional languages.c.enable c )
-							(lib.optional languages.c.enable cpp)
+							(lib.optional languages.c.enable [ c cpp ] )
 							(lib.optional languages.lua.enable lua)
-							(lib.optional languages.markdown.enable markdown)
-							(lib.optional languages.markdown.enable markdown_inline)
+							(lib.optional languages.markdown.enable [ markdown markdown_inline ])
 							(lib.optional languages.nix.enable nix)
 							(lib.optional languages.python.enable python)
 							(lib.optional languages.rust.enable rust)
