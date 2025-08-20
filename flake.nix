@@ -58,14 +58,16 @@
 							with config.neovim.languages;
 							with pkgs.vimPlugins.nvim-treesitter-parsers;
 						lib.flatten [
-							(lib.optional c.enable [ c cpp ])
-							(lib.optional lua.enable [ lua ])
-							(lib.optional markdown.enable [ markdown markdown_inline ])
-							(lib.optional nix.enable [ nix ])
-							(lib.optional python.enable [ python ])
-							(lib.optional rust.enable [ rust ])
-							(lib.optional toml.enable [ toml ])
-							(lib.optional zig.enable [ zig ])
+							(lib.optional c.enable c )
+							(lib.optional c.enable cpp)
+							(lib.optional lua.enable lua)
+							(lib.optional markdown.enable markdown)
+							(lib.optional markdown.enable markdown_inline)
+							(lib.optional nix.enable nix)
+							(lib.optional python.enable python)
+							(lib.optional rust.enable rust)
+							(lib.optional toml.enable toml)
+							(lib.optional zig.enable zig)
 							# NOTE: other parsers:
 							# yaml, xml, wgsl, vimdoc, vim, tmux, sway, sql, ron, regex,
 							# latex, json, javascript, javadoc, java, html, go, css, c, asm,
