@@ -55,18 +55,17 @@
 							nvim-cmp
 						];
 						parsers =
-							with lib;
 							with config.neovim.languages;
 							with pkgs.vimPlugins.nvim-treesitter-parsers;
 						lib.flatten [
-							(optional c.enable [ c cpp ])
-							(optional lua.enable [ lua ])
-							(optional markdown.enable [ markdown markdown_inline ])
-							(optional nix.enable [ nix ])
-							(optional python.enable [ python ])
-							(optional rust.enable [ rust ])
-							(optional toml.enable [ toml ])
-							(optional zig.enable [ zig ])
+							(lib.optional c.enable [ c cpp ])
+							(lib.optional lua.enable [ lua ])
+							(lib.optional markdown.enable [ markdown markdown_inline ])
+							(lib.optional nix.enable [ nix ])
+							(lib.optional python.enable [ python ])
+							(lib.optional rust.enable [ rust ])
+							(lib.optional toml.enable [ toml ])
+							(lib.optional zig.enable [ zig ])
 							# NOTE: other parsers:
 							# yaml, xml, wgsl, vimdoc, vim, tmux, sway, sql, ron, regex,
 							# latex, json, javascript, javadoc, java, html, go, css, c, asm,
@@ -76,19 +75,18 @@
 				};
 
 				home.packages =
-					with lib;
 					with config.neovim;
 					with pkgs;
 				lib.flatten [
 					pkgs.ripgrep
-					(optional languages.c.enable clang-tools)
-					(optional languages.lua.enable lua-language-server)
-					(optional languages.markdown.enable vscode-langservers-extracted)
-					(optional languages.nix.enable nixd)
-					(optional languages.python.enable pyright)
-					(optional languages.rust.enable rust-analyzer)
-					(optional languages.toml.enable taplo)
-					(optional languages.zig.enable zls)
+					(lib.optional languages.c.enable clang-tools)
+					(lib.optional languages.lua.enable lua-language-server)
+					(lib.optional languages.markdown.enable vscode-langservers-extracted)
+					(lib.optional languages.nix.enable nixd)
+					(lib.optional languages.python.enable pyright)
+					(lib.optional languages.rust.enable rust-analyzer)
+					(lib.optional languages.toml.enable taplo)
+					(lib.optional languages.zig.enable zls)
 				];
 			};
 		};
