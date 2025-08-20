@@ -33,9 +33,7 @@
 
 					plugins = let
 						plugins = with pkgs.vimPlugins; [
-							# nvim-tree-lua
 							catppuccin-nvim
-							cmp-nvim-lsp
 							cmp-nvim-lsp
 							crates-nvim
 							gitsigns-nvim
@@ -43,14 +41,15 @@
 							lualine-nvim
 							nvim-autopairs
 							nvim-cmp
-							nvim-cmp
 							nvim-lspconfig
+							nvim-tree-lua
 							nvim-treesitter
 							nvim-treesitter-context
 							nvim-ufo
 							nvim-web-devicons
-							oil-nvim
 							telescope-nvim
+							cmp-nvim-lsp
+							nvim-cmp
 						];
 						parsers =
 							with config.neovim;
