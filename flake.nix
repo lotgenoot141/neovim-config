@@ -31,7 +31,7 @@
 					defaultEditor = config.neovim.defaultEditor;
 					vimAlias = config.neovim.vimAlias;
 					extraLuaConfig = builtins.readFile ./init.lua;
-					extraLuaPackages = [];
+					# extraLuaPackages = [];
 
 					plugins = let
 						plugins = with pkgs.vimPlugins; [
@@ -54,12 +54,10 @@
 							cmp-nvim-lsp
 							nvim-cmp
 						];
-						parsers = [];
-						/*
 						parsers =
 							with lib;
-							with pkgs.vimPlugins.nvim-treesitter-parsers;
 							with config.neovim.languages;
+							with pkgs.vimPlugins.nvim-treesitter-parsers;
 						lib.flatten [
 							(optional c.enable [ c cpp ])
 							(optional lua.enable [ lua ])
@@ -74,7 +72,6 @@
 							# latex, json, javascript, javadoc, java, html, go, css, c, asm,
 							# typst
 						];
-						*/
 					in plugins ++ parsers;
 				};
 
