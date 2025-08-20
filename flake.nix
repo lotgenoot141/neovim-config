@@ -1,9 +1,9 @@
 {
     description = "My Neovim Flake";
 
-    inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+    inputs.nixpkgs.url = "github:NixOS/nixpkgs/d43e7c2417948b88a46e54817ae6b5055ceb1fbc";
 
-    outputs = { self, nixpkgs, flake-utils, ... }: {
+    outputs = { ... }: {
 		homeModules.default = { config, lib, pkgs, ... }: {
 			options.neovim = {
 				enable = lib.mkEnableOption "Neovim";
@@ -50,7 +50,6 @@
 							nvim-ufo
 							nvim-web-devicons
 							oil-nvim
-							plenary-nvim
 							telescope-nvim
 						];
 						parsers =

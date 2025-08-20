@@ -6,6 +6,7 @@
 -- file navigation
 	-- TODO: oil
 	-- TODO: hover nvim tree should preview file
+	-- TODO: maybe use mini.pick instead of telescope
 -- TODO: make use of new completion functionality (https://youtube.com/watch?v=ZiH59zg59kg)
 -- TODO: configure which key
 -- TODO: configure snake and camel case as words
@@ -14,11 +15,10 @@
 -- gpanders.com/blog/whats-new-in-neovim-0-11
 
 do -- options
-	--globals
 	-- TODO: highlight current line
 	vim.g.mapleader = " "
 	vim.g.zig_fmt_autosave = 0
-	-- givens
+
 	vim.opt.autoindent = true
 	vim.opt.laststatus = 3 -- global status
 	vim.opt.number = true
@@ -28,7 +28,7 @@ do -- options
 	vim.opt.termguicolors = true
 	vim.opt.tabstop = 4
 	vim.opt.winborder = "single"
-	-- ambiguous
+
 	vim.opt.colorcolumn = { 80, 120 }
 	vim.opt.expandtab = false
 	vim.opt.foldlevel = 99
@@ -104,6 +104,7 @@ require("ibl").setup({
 	indent = { char = "│" },
 	scope = { enabled = false }
 })
+
 --[[
 require("nvim-tree").setup({
     auto_reload_on_write = true,
@@ -113,6 +114,7 @@ require("nvim-tree").setup({
 })
 --]]
 
+--[[]
 require("oil").setup({
 	default_file_explorer = true,
 	columns = {
@@ -308,7 +310,7 @@ require("oil").setup({
 		border = "rounded",
 	},
 })
-
+--]]
 
 require("lualine").setup({
 	options = {
@@ -349,10 +351,10 @@ require("lualine").setup({
 				end,
 			},
 		},
-		lualine_b = { "diff", "diagnostics" },
+		lualine_b = { },
 		lualine_c = { "filename" },
-		-- lualine_x = { "filetype" },
-		-- lualine_y = { "fileformat" },
+		lualine_x = { "diff", "diagnostics" },
+		lualine_y = { },
 		lualine_z = { "location" },
 	},
 })
@@ -369,7 +371,7 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 	end
 })
 
--- auto fold imports on file open
+-- auto folds imports on file open
 --[[
 vim.api.nvim_create_autocmd("LspNotify", {
 	callback = function(args)
@@ -425,3 +427,4 @@ do -- keybinds
 	vim.api.nvim_create_user_command("Wa", "wa", {})
 	vim.api.nvim_create_user_command("Wqa", "wqa", {})
 end
+
