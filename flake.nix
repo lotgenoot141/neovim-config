@@ -1,9 +1,15 @@
 {
     description = "My Neovim Flake";
 
-    inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+    inputs = {
+		nixpkgs.url = "github:NixOS/nixpkgs";
+		neovim-nightly-overlay = {
+			url = "github:nix-community/neovim-nightly-overlay";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+	};
 
-    outputs = { ... }: {
+    outputs = inputs @ { ... }: {
 		homeModules.default = { config, lib, pkgs, ... }: {
 			options.neovim = {
 				enable = lib.mkEnableOption "Neovim";
@@ -29,6 +35,7 @@
 					defaultEditor = config.neovim.defaultEditor;
 					vimAlias = config.neovim.vimAlias;
 					extraLuaConfig = builtins.readFile ./init.lua;
+					package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 					plugins = let
 						plugins = with pkgs.vimPlugins; [
 							catppuccin-nvim
