@@ -1,7 +1,7 @@
 {
     description = "My Neovim Flake";
 
-    inputs.nixpkgs.url = "github:NixOS/nixpkgs/16bc4259a8c3d236e85c6e6e05d5417355c610df";
+    inputs.nixpkgs.url = "github:NixOS/nixpkgs";
 
     outputs = { ... }: {
 		homeModules.default = { config, lib, pkgs, ... }: {
@@ -29,8 +29,6 @@
 					defaultEditor = config.neovim.defaultEditor;
 					vimAlias = config.neovim.vimAlias;
 					extraLuaConfig = builtins.readFile ./init.lua;
-					# extraLuaPackages = [];
-
 					plugins = let
 						plugins = with pkgs.vimPlugins; [
 							catppuccin-nvim
