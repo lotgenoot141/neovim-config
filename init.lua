@@ -1,10 +1,7 @@
 --[[ TODO
-
 - folding
 - comment folding
-	- why i cant fold on the last line of a fold?
-	- auto fold all folds by default
-- configure renaming/refactoring symbols
+	- auto fold all level 1 folds by default
 - file navigation
 	- oil
 	- hover nvim tree should preview file
@@ -12,8 +9,6 @@
 - make use of new completion functionality (https://youtube.com/watch?v=ZiH59zg59kg)
 - configure snake and camel case as words
 - configure which key
-- https://github.com/topics/neovim-colorscheme
-
 --]]
 
 do -- options
@@ -40,6 +35,29 @@ do -- options
 	vim.opt.wrap = false
 end
 
+do -- plugins
+	-- installs plugins in ~/.local/share/nvim/site/pack/core/opt
+	vim.pack.add({
+		"https://github.com/Saecki/crates.nvim",
+		"https://github.com/catppuccin/nvim",
+		"https://github.com/hrsh7th/cmp-nvim-lsp",
+		"https://github.com/hrsh7th/nvim-cmp",
+		"https://github.com/kevinhwang91/nvim-ufo",
+		"https://github.com/kevinhwang91/promise-async",
+		"https://github.com/lewis6991/gitsigns.nvim",
+		"https://github.com/lukas-reineke/indent-blankline.nvim",
+		"https://github.com/neovim/nvim-lspconfig",
+		"https://github.com/nvim-lua/plenary.nvim",
+		"https://github.com/nvim-lualine/lualine.nvim",
+		"https://github.com/nvim-telescope/telescope.nvim",
+		"https://github.com/nvim-tree/nvim-tree.lua",
+		"https://github.com/nvim-tree/nvim-web-devicons",
+		"https://github.com/nvim-treesitter/nvim-treesitter",
+		"https://github.com/nvim-treesitter/nvim-treesitter-context",
+		"https://github.com/windwp/nvim-autopairs",
+	})
+end
+
 do -- colorschemes
 	require("catppuccin").setup({
 		transparent_background = true,
@@ -58,17 +76,11 @@ do -- lsp
 		"nixd",
 		"lua_ls",
 		"cssls",
-		"clangd"
+		"clangd",
 	}
 
 	for _, server in ipairs(servers) do
-		require("lspconfig")[server].setup({
-			on_attach = function(client, bufnr)
-				if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-				end
-			end,
-		})
+		require("lspconfig")[server].setup({})
 	end
 end
 
@@ -91,21 +103,34 @@ do -- completions
 end
 
 require("telescope").setup() -- for some reason the winborders are rounded instead of square
+
 require("nvim-autopairs").setup()
+
 require("ufo").setup()
+
 require("gitsigns").setup()
+
 require("crates").setup()
+
 require("nvim-web-devicons").setup()
+
 require("treesitter-context").setup({ max_lines = 1 })
+
+-- NOTE: install the tree sitter cli to install parsers on non-nix systems
 require("nvim-treesitter.configs").setup({
-	highlight = { enable = true },
+	highlight = {
+		enable = true,
+		-- disable = { "rust" },
+	},
 	indent = { enable = true },
-	parser_install_dir = "/dev/null"
+	-- parser_install_dir = "/dev/null" is this even an option anymore?
 })
+
 require("ibl").setup({
 	indent = { char = "│" },
 	scope = { enabled = false }
 })
+
 require("lualine").setup({
 	options = {
 		component_separators = { left = "", right = "" },

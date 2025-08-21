@@ -34,10 +34,25 @@
 					vimAlias = config.neovim.vimAlias;
 					extraLuaConfig = builtins.readFile ./init.lua;
 					package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+					plugins = with config.neovim; with pkgs.vimPlugins.nvim-treesitter-parsers; lib.flatten [
+						(lib.optional languages.c.enable [ c cpp ] )
+						(lib.optional languages.lua.enable lua)
+						(lib.optional languages.markdown.enable [ markdown markdown_inline ])
+						(lib.optional languages.nix.enable nix)
+						(lib.optional languages.python.enable python)
+						(lib.optional languages.rust.enable rust)
+						(lib.optional languages.toml.enable toml)
+						(lib.optional languages.zig.enable zig)
+						# NOTE: other parsers:
+						# yaml, xml, wgsl, vimdoc, vim, tmux, sway, sql, ron, regex,
+						# latex, json, javascript, javadoc, java, html, go, css, c, asm,
+						# typst
+					];
 				};
 
 				home.packages = with config.neovim; with pkgs; lib.flatten [
 					pkgs.ripgrep
+					pkgs.fd
 					(lib.optional languages.c.enable clang-tools)
 					(lib.optional languages.lua.enable lua-language-server)
 					(lib.optional languages.markdown.enable vscode-langservers-extracted)
