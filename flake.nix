@@ -24,9 +24,7 @@
 					rust.enable = lib.mkEnableOption "Rust";
 					toml.enable = lib.mkEnableOption "TOML";
 					zig.enable = lib.mkEnableOption "Zig";
-					# TODO: other languages
 				};
-				# TODO: colorschemes
 			};
 
 			config = lib.mkIf config.neovim.enable {
@@ -36,49 +34,9 @@
 					vimAlias = config.neovim.vimAlias;
 					extraLuaConfig = builtins.readFile ./init.lua;
 					package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-					plugins = let
-						plugins = with pkgs.vimPlugins; [
-							# catppuccin-nvim
-							# cmp-nvim-lsp
-							# crates-nvim
-							# gitsigns-nvim
-							# indent-blankline-nvim
-							# lualine-nvim
-							# nvim-autopairs
-							# nvim-cmp
-							# nvim-lspconfig
-							# nvim-tree-lua
-							# nvim-treesitter
-							# nvim-treesitter-context
-							# nvim-ufo
-							# nvim-web-devicons
-							# telescope-nvim
-						];
-						parsers =
-							with config.neovim;
-							with pkgs.vimPlugins.nvim-treesitter-parsers;
-						lib.flatten [
-							# (lib.optional languages.c.enable [ c cpp ] )
-							# (lib.optional languages.lua.enable lua)
-							# (lib.optional languages.markdown.enable [ markdown markdown_inline ])
-							# (lib.optional languages.nix.enable nix)
-							# (lib.optional languages.python.enable python)
-							# (lib.optional languages.rust.enable rust)
-							# (lib.optional languages.toml.enable toml)
-							# (lib.optional languages.zig.enable zig)
-							#
-							# NOTE: other parsers:
-							# yaml, xml, wgsl, vimdoc, vim, tmux, sway, sql, ron, regex,
-							# latex, json, javascript, javadoc, java, html, go, css, c, asm,
-							# typst
-						];
-					in plugins ++ parsers;
 				};
 
-				home.packages =
-					with config.neovim;
-					with pkgs;
-				lib.flatten [
+				home.packages = with config.neovim; with pkgs; lib.flatten [
 					pkgs.ripgrep
 					(lib.optional languages.c.enable clang-tools)
 					(lib.optional languages.lua.enable lua-language-server)
