@@ -38,36 +38,35 @@
 					package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 					plugins = let
 						plugins = with pkgs.vimPlugins; [
-							catppuccin-nvim
-							cmp-nvim-lsp
-							crates-nvim
-							gitsigns-nvim
-							indent-blankline-nvim
-							lualine-nvim
-							nvim-autopairs
-							nvim-cmp
-							nvim-lspconfig
-							nvim-tree-lua
-							nvim-treesitter
-							nvim-treesitter-context
-							nvim-ufo
-							nvim-web-devicons
-							telescope-nvim
-							cmp-nvim-lsp
-							nvim-cmp
+							# catppuccin-nvim
+							# cmp-nvim-lsp
+							# crates-nvim
+							# gitsigns-nvim
+							# indent-blankline-nvim
+							# lualine-nvim
+							# nvim-autopairs
+							# nvim-cmp
+							# nvim-lspconfig
+							# nvim-tree-lua
+							# nvim-treesitter
+							# nvim-treesitter-context
+							# nvim-ufo
+							# nvim-web-devicons
+							# telescope-nvim
 						];
 						parsers =
 							with config.neovim;
 							with pkgs.vimPlugins.nvim-treesitter-parsers;
 						lib.flatten [
-							(lib.optional languages.c.enable [ c cpp ] )
-							(lib.optional languages.lua.enable lua)
-							(lib.optional languages.markdown.enable [ markdown markdown_inline ])
-							(lib.optional languages.nix.enable nix)
-							(lib.optional languages.python.enable python)
-							(lib.optional languages.rust.enable rust)
-							(lib.optional languages.toml.enable toml)
-							(lib.optional languages.zig.enable zig)
+							# (lib.optional languages.c.enable [ c cpp ] )
+							# (lib.optional languages.lua.enable lua)
+							# (lib.optional languages.markdown.enable [ markdown markdown_inline ])
+							# (lib.optional languages.nix.enable nix)
+							# (lib.optional languages.python.enable python)
+							# (lib.optional languages.rust.enable rust)
+							# (lib.optional languages.toml.enable toml)
+							# (lib.optional languages.zig.enable zig)
+							#
 							# NOTE: other parsers:
 							# yaml, xml, wgsl, vimdoc, vim, tmux, sway, sql, ron, regex,
 							# latex, json, javascript, javadoc, java, html, go, css, c, asm,
