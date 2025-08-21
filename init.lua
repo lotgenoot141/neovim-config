@@ -61,7 +61,7 @@ end
 do -- colorschemes
 	require("catppuccin").setup({
 		transparent_background = true,
-		float = { transparent = true, }
+		float = { transparent = true },
 	})
 	vim.cmd.colorscheme("catppuccin")
 end
@@ -118,12 +118,8 @@ require("treesitter-context").setup({ max_lines = 1 })
 
 -- NOTE: install the tree sitter cli to install parsers on non-nix systems
 require("nvim-treesitter.configs").setup({
-	highlight = {
-		enable = true,
-		-- disable = { "rust" },
-	},
+	highlight = { enable = true },
 	indent = { enable = true },
-	-- parser_install_dir = "/dev/null" is this even an option anymore?
 })
 
 require("ibl").setup({

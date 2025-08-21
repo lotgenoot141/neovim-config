@@ -35,7 +35,7 @@
 					extraLuaConfig = builtins.readFile ./init.lua;
 					package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 					plugins = with config.neovim; with pkgs.vimPlugins.nvim-treesitter-parsers; lib.flatten [
-						(lib.optional languages.c.enable [ c cpp ] )
+						(lib.optional languages.c.enable [ c cpp ])
 						(lib.optional languages.lua.enable lua)
 						(lib.optional languages.markdown.enable [ markdown markdown_inline ])
 						(lib.optional languages.nix.enable nix)
