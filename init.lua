@@ -58,30 +58,28 @@ do -- plugins
 	})
 end
 
-do -- colorschemes
+do -- lsp
+	-- TODO: how to make this language agnostic?
+	vim.lsp.enable({
+		"clangd",
+		"cssls",
+		"lua_ls",
+		"nixd",
+		"pyright",
+		"rust_analyzer",
+		"taplo",
+		"zls",
+	})
+
+	vim.lsp.semantic_tokens.enable(false)
+end
+
+do -- colorscheme
 	require("catppuccin").setup({
 		transparent_background = true,
 		float = { transparent = true },
 	})
 	vim.cmd.colorscheme("catppuccin")
-end
-
-do -- lsp
-	-- TODO: how to make this language agnostic?
-	local servers = {
-		"zls",
-		"taplo",
-		"rust_analyzer",
-		"pyright",
-		"nixd",
-		"lua_ls",
-		"cssls",
-		"clangd",
-	}
-
-	for _, server in ipairs(servers) do
-		require("lspconfig")[server].setup({})
-	end
 end
 
 do -- completions
@@ -219,7 +217,7 @@ do -- keybinds
 		leader_bind("h", vim.lsp.buf.hover, "Displays information about symbol under cursor."),
 		leader_bind("d", vim.lsp.buf.definition, "Goes to definition of symbol under cursor."),
 		leader_bind("a", vim.lsp.buf.code_action, "Lists possible code actions under cursor."),
-		leader_bind("<TAB>", "NvimTreeToggle", "Toggles the directory tree."),
+		-- leader_bind("<TAB>", "NvimTreeToggle", "Toggles the directory tree."),
 		leader_bind("i", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, "Toggles inlay hints."),
 
 		-- TODO
