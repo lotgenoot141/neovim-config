@@ -23,6 +23,7 @@
 					python.enable = lib.mkEnableOption "Python";
 					rust.enable = lib.mkEnableOption "Rust";
 					toml.enable = lib.mkEnableOption "TOML";
+					typst.enable = lib.mkEnableOption "Typst";
 					zig.enable = lib.mkEnableOption "Zig";
 				};
 			};
@@ -35,6 +36,7 @@
 					extraLuaConfig = builtins.readFile ./init.lua;
 					package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 					plugins = with config.neovim; with pkgs.vimPlugins.nvim-treesitter-parsers; lib.flatten [
+						vimdoc
 						(lib.optional languages.c.enable [ c cpp ])
 						(lib.optional languages.lua.enable lua)
 						(lib.optional languages.markdown.enable [ markdown markdown_inline ])
@@ -42,11 +44,9 @@
 						(lib.optional languages.python.enable python)
 						(lib.optional languages.rust.enable rust)
 						(lib.optional languages.toml.enable toml)
+						(lib.optional languages.typst.enable typst)
 						(lib.optional languages.zig.enable zig)
-						# NOTE: other parsers:
-						# yaml, xml, wgsl, vimdoc, vim, tmux, sway, sql, ron, regex,
-						# latex, json, javascript, javadoc, java, html, go, css, c, asm,
-						# typst
+						# asm, c, css, go, html, java, javadoc, javascript, json, latex, regex, ron, sql, sway, tmux, vim, wgsl, xml, yaml,
 					];
 				};
 
@@ -60,6 +60,7 @@
 					(lib.optional languages.python.enable pyright)
 					(lib.optional languages.rust.enable rust-analyzer)
 					(lib.optional languages.toml.enable taplo)
+					(lib.optional languages.typst.enable tinymist)
 					(lib.optional languages.zig.enable zls)
 				];
 			};
