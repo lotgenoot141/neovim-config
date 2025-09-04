@@ -3,13 +3,14 @@
 
     inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs";
+
 		neovim-nightly-overlay = {
 			url = "github:nix-community/neovim-nightly-overlay";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
 
-    outputs = inputs @ { ... }: {
+    outputs = inputs: {
 		homeModules.default = { config, lib, pkgs, ... }: {
 			options.neovim = {
 				enable = lib.mkEnableOption "Neovim";
@@ -33,7 +34,7 @@
 					enable = true;
 					defaultEditor = config.neovim.defaultEditor;
 					vimAlias = config.neovim.vimAlias;
-					extraLuaConfig = builtins.readFile ./init.lua;
+					extraLuaConfig = lib.readFile ./init.lua;
 					package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 					plugins = with config.neovim; with pkgs.vimPlugins.nvim-treesitter-parsers; lib.flatten [
 						vimdoc

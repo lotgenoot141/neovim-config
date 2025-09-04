@@ -40,6 +40,7 @@ do -- plugins
 	vim.pack.add({
 		"https://github.com/Saecki/crates.nvim",
 		"https://github.com/catppuccin/nvim",
+		"https://github.com/vague2k/vague.nvim",
 		"https://github.com/hrsh7th/cmp-nvim-lsp",
 		"https://github.com/hrsh7th/nvim-cmp",
 		"https://github.com/kevinhwang91/nvim-ufo",
@@ -75,11 +76,18 @@ do -- lsp
 end
 
 do -- colorscheme
+	-- https://github.com/vague2k/vague.nvim
 	require("catppuccin").setup({
 		transparent_background = true,
 		float = { transparent = true },
 	})
-	vim.cmd.colorscheme("catppuccin")
+
+	require("vague").setup({
+		transparent = true,
+	})
+
+	-- vim.cmd.colorscheme("catppuccin")
+	vim.cmd.colorscheme("vague")
 end
 
 do -- completions
