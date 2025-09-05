@@ -47,7 +47,7 @@
 						vimdoc
 
 						(lib.optional languages.c.enable [ c cpp ])
-						(lib.optional languages.css.enable css)
+						(lib.optional languages.css.enable [ css scss ])
 						(lib.optional languages.html.enable html)
 						(lib.optional languages.java.enable [ java javadoc ])
 						(lib.optional languages.javascript.enable [ javascript jsdoc tsx typescript ])
