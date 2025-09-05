@@ -59,8 +59,8 @@
 						(lib.optional languages.rust.enable [ rust ron ])
 						(lib.optional languages.toml.enable toml)
 						(lib.optional languages.typst.enable typst)
-						(lib.optional languages.zig.enable [ zig zon ])
-						# asm, go, latex, regex, ron, sql, sway, tmux, wgsl, xml, yaml,
+						(lib.optional languages.zig.enable [ zig ])
+						# asm, go, latex, regex, ron, sql, sway, tmux, wgsl, xml, yaml
 					];
 				};
 
