@@ -86,8 +86,8 @@ do -- colorscheme
 		transparent = true,
 	})
 
-	-- vim.cmd.colorscheme("catppuccin")
-	vim.cmd.colorscheme("vague")
+	vim.cmd.colorscheme("catppuccin")
+	-- vim.cmd.colorscheme("vague")
 end
 
 do -- completions
